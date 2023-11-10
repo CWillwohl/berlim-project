@@ -6,10 +6,11 @@ use App\Models\Lock;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 
 class CreateLockController extends Controller
 {
-    public function __invoke(Request $request): View
+    public function __invoke(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
@@ -20,6 +21,6 @@ class CreateLockController extends Controller
 
         $lock = Lock::create($request->validated());
 
-        return view('lock.show', $lock);
+        return redirect()->route('locks.edit', $lock);
     }
 }

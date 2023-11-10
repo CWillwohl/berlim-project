@@ -1,12 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Any\DashboardController;
 use App\Http\Controllers\Auth\RegisterUserController;
 use App\Http\Controllers\Auth\RegisterScreenController;
+use App\Http\Controllers\Lock\Views\IndexLockController;
 use App\Http\Controllers\Auth\AuthenticateUserController;
+use App\Http\Controllers\Lock\Views\CreateLockController;
+use App\Http\Controllers\Lock\Views\UpdateLockController;
 use App\Http\Controllers\Auth\AuthenticateScreenController;
-use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Lock\CRUD\CreateLockController as CreateFunctionLockController;
+use App\Http\Controllers\Lock\CRUD\DeleteLockController;
+use App\Http\Controllers\Lock\CRUD\UpdateLockController as UpdateFunctionLockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +40,13 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::post('/logout', LogoutController::class)->name('logout');
+
+    Route::prefix('locks')->group(function () {
+        Route::get('/', IndexLockController::class)->name('locks');
+        Route::get('/create', CreateLockController::class)->name('locks.create');
+        Route::post('/store', CreateFunctionLockController::class)->name('locks.store');
+        Route::get('/{lock}', UpdateLockController::class)->name('locks.edit');
+        Route::put('/{lock}', UpdateFunctionLockController::class)->name('locks.update');
+        Route::delete('/{lock}', DeleteLockController::class)->name('locks.destroy');
+    });
 });
