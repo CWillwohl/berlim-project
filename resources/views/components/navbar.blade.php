@@ -17,12 +17,20 @@
         </button>
         <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
             <ul
-                class="mt-4 flex flex-col rounded-lg border border-slate-100 bg-slate-50 p-4 font-medium dark:border-slate-700 dark:bg-slate-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-slate-900">
+                class="mt-4 flex flex-col rounded-lg border border-slate-100 bg-slate-50 p-4 gap-4 font-medium dark:border-slate-700 dark:bg-slate-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-slate-900">
                 <li>
-                    <a href="#"
-                        class="block rounded bg-blue-700 py-2 pl-3 pr-4 text-white dark:bg-blue-600 md:bg-transparent md:p-0 md:text-blue-700 md:dark:bg-transparent md:dark:text-blue-500"
+                    <a href="{{ route('dashboard') }}"
+                        class="block rounded py-2 pl-3 pr-4 bg-transparent md:p-0 @if(request()->routeIs('dashboard')) text-blue-500 @else text-white @endif"
                         aria-current="page">
                         Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('locks.index') }}"
+                        class="block rounded py-2 pl-3 pr-4 bg-transparent md:p-0 @if(request()->routeIs('locks.*')) text-blue-500 @else text-white @endif"
+                        aria-current="page">
+                        Fechadura
                     </a>
                 </li>
 
@@ -48,11 +56,7 @@
                             aria-labelledby="dropdownLargeButton">
                             <li>
                                 <a href="#"
-                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Settings</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Earnings</a>
+                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Configurações</a>
                             </li>
                         </ul>
                         <div class="py-1">

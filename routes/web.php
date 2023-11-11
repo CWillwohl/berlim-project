@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', LogoutController::class)->name('logout');
 
     Route::prefix('locks')->group(function () {
-        Route::get('/', IndexLockController::class)->name('locks');
+        Route::get('/', IndexLockController::class)->name('locks.index');
         Route::get('/create', CreateLockController::class)->name('locks.create');
         Route::post('/store', CreateFunctionLockController::class)->name('locks.store');
         Route::get('/{lock}', UpdateLockController::class)->name('locks.edit');
