@@ -12,15 +12,18 @@ class CreateLockController extends Controller
 {
     public function __invoke(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:100'],
+        $data = $request->validate([
             'hash' => ['required', 'string'],
             'location_id' => ['required', 'integer'],
-            'status' => ['required', 'boolean'],
         ]);
 
-        $lock = Lock::create($request->validated());
+        $lock = Lock::create([
+            'hash' => $data['hash'],
+            'location_id' => $data['location_id'],
+            'status' => false,
+            'user_id' => null
+        ]);
 
-        return redirect()->route('locks.edit', $lock);
+        return redirect()->route('locks.edit', $lock)->with('success', 'Fechadura cadastrada com sucesso!');
     }
 }

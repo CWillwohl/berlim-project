@@ -16,7 +16,7 @@
 </head>
 <body>
     <x-navbar />
-        <main class="w-full min-h-screen flex p-8 justify-center items-start bg-gradient-to-b from-slate-900 via-gray-800 to-slate-900">
+        <main class="w-full min-h-screen flex p-8 gap-4 justify-center items-start bg-gradient-to-b from-slate-900 via-gray-800 to-slate-900">
             {{ $slot }}
         </main>
     <x-footer />

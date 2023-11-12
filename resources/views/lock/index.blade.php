@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-utils.card title="Tabela - Fechaduras">
+    <x-utils.card title="Tabela - Fechaduras" size="w-2/3">
         <div class="relative overflow-x-auto sm:rounded-lg">
             <div class="p-2 flex justify-between items-center">
                 <div class="max-w-1/2">
@@ -43,29 +43,36 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse ($locks as $item)
+                        <tr class="text-xs bg-gradient-to-b from-blue-500/70 to-blue-500/50 text-white uppercase">
+                            <th class="px-6 py-4">
+                                {{ $item->hash }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $item->status }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->user->formatted_name ?? 'Não vinculado.' }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->location_id }}
+                            </td>
+                            <td class="flex px-6 py-4 gap-2">
+                                <a href="{{ route('locks.edit', $item) }}" type="button" class="text-white focus:ring ring-white focus:outline-none bg-black/30 shadow-lg duration-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <button type="button" class="text-white focus:ring ring-white focus:outline-none bg-black/30 shadow-lg duration-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @empty
                     <tr class="text-xs bg-gradient-to-b from-blue-500/70 to-blue-500/50 text-white uppercase">
-                        <th class="px-6 py-4">
-                            Apple MacBook Pro 17"
+                        <th class="px-6 py-4" colspan="5">
+                            Nenhum item localizado.
                         </th>
-                        <td class="px-6 py-4">
-                            Silver
-                        </td>
-                        <td class="px-6 py-4">
-                            Laptop
-                        </td>
-                        <td class="px-6 py-4">
-                            $2999
-                        </td>
-                        <td class="flex px-6 py-4 gap-2">
-                            <button type="button" class="text-white focus:ring ring-white focus:outline-none bg-black/30 shadow-lg duration-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </button>
-
-                            <button type="button" class="text-white focus:ring ring-white focus:outline-none bg-black/30 shadow-lg duration-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </td>
                     </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
