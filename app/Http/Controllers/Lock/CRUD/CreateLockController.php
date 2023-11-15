@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Lock\CRUD;
 
+use AlertMessage;
 use App\Models\Lock;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
@@ -10,6 +11,9 @@ use Illuminate\Http\RedirectResponse;
 
 class CreateLockController extends Controller
 {
+
+    use AlertMessage;
+
     public function __invoke(Request $request): RedirectResponse
     {
         $data = $request->validate([
@@ -24,12 +28,7 @@ class CreateLockController extends Controller
             'user_id' => null
         ]);
 
-        $alert = [
-            'type' => 'success',
-            'message' => 'Fechadura criada com sucesso!'
-        ];
-
-        session()->flash('alert', $alert);
+        $this->successMessage('Fechadura cadastrada com sucesso!');
 
         return redirect()->route('locks.edit', $lock)->with('success', 'Fechadura cadastrada com sucesso!');
     }

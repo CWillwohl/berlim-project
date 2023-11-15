@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Lock\CRUD;
 
+use AlertMessage;
 use App\Models\Lock;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,6 +10,9 @@ use Illuminate\Http\RedirectResponse;
 
 class LinkUserInLockController extends Controller
 {
+
+    use AlertMessage;
+
     public function __invoke(Request $request, Lock $lock): RedirectResponse
     {
         $data = $request->validate([
@@ -21,24 +25,14 @@ class LinkUserInLockController extends Controller
             $lock->user_id = $data['user_id'];
             $lock->save();
 
-            $alert = [
-                'type' => 'success',
-                'message' => 'Usuário vinculado com sucesso!'
-            ];
-
-            session()->flash('alert', $alert);
+            $this->successMessage('Usuário vinculado com sucesso!');
 
             return redirect()->back();
         }
 
         $lock->removeUser();
 
-        $alert = [
-            'type' => 'success',
-            'message' => 'Usuário desvinculado com sucesso!'
-        ];
-
-        session()->flash('alert', $alert);
+        $this->successMessage('Usuário vinculado com sucesso!');
 
         return redirect()->back();
     }
