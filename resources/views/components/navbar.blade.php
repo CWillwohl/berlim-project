@@ -1,4 +1,4 @@
-<nav class="border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
+<nav class="border-b-2 border-slate-700 bg-slate-900">
     <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
         <a href="#" class="flex items-center">
             <span class="self-center whitespace-nowrap rounded border border-slate-700 p-4 text-2xl font-semibold dark:text-white">

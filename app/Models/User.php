@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -49,5 +50,10 @@ class User extends Authenticatable
         return $name[0] != null && $name[1] != null
                 ? $name[0] . ' ' . $name[1]
                 : $this->name;
+    }
+
+    public function locks(): HasMany
+    {
+        return $this->hasMany(Lock::class);
     }
 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\AuthenticateScreenController;
 use App\Http\Controllers\Lock\CRUD\CreateLockController as CreateFunctionLockController;
 use App\Http\Controllers\Lock\CRUD\UpdateLockController as UpdateFunctionLockController;
 use App\Http\Controllers\Lock\CRUD\DeleteLockController as DeleteFunctionLockController;
+use App\Http\Controllers\Lock\CRUD\LinkUserInLockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,5 +49,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/editar/{lock}', UpdateLockController::class)->name('locks.edit');
         Route::put('/editar/{lock}', UpdateFunctionLockController::class)->name('locks.update');
         Route::delete('/deletar/{lock}', DeleteFunctionLockController::class)->name('locks.destroy');
+        Route::patch('/vincular/{lock}', LinkUserInLockController::class)->name('locks.link');
     });
 });
