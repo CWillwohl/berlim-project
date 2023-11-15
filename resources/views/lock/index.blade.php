@@ -49,7 +49,7 @@
                                 {{ $item->hash }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ $item->status }}
+                                {{ $item->status ? 'Destravada' : 'Trancada' }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $item->user->formatted_name ?? 'Não vinculado.' }}

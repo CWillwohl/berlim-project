@@ -20,6 +20,13 @@ class UpdateLockController extends Controller
 
         $lock->update($request->validated());
 
+        $alert = [
+            'type' => 'success',
+            'message' => 'Fechadura atualizada com sucesso!'
+        ];
+
+        session()->flash('alert', $alert);
+
         return redirect()->route('locks.edit', $lock);
     }
 }

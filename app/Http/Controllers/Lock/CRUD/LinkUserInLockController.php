@@ -21,10 +21,24 @@ class LinkUserInLockController extends Controller
             $lock->user_id = $data['user_id'];
             $lock->save();
 
+            $alert = [
+                'type' => 'success',
+                'message' => 'Usuário vinculado com sucesso!'
+            ];
+
+            session()->flash('alert', $alert);
+
             return redirect()->back();
         }
 
         $lock->removeUser();
+
+        $alert = [
+            'type' => 'success',
+            'message' => 'Usuário desvinculado com sucesso!'
+        ];
+
+        session()->flash('alert', $alert);
 
         return redirect()->back();
     }

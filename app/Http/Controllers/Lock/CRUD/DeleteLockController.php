@@ -13,6 +13,13 @@ class DeleteLockController extends Controller
     {
         $lock->delete();
 
+        $alert = [
+            'type' => 'success',
+            'message' => 'Fechadura apagada com sucesso!'
+        ];
+
+        session()->flash('alert', $alert);
+
         return redirect()->route('locks.index');
     }
 }

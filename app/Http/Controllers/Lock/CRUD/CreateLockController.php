@@ -24,6 +24,13 @@ class CreateLockController extends Controller
             'user_id' => null
         ]);
 
+        $alert = [
+            'type' => 'success',
+            'message' => 'Fechadura criada com sucesso!'
+        ];
+
+        session()->flash('alert', $alert);
+
         return redirect()->route('locks.edit', $lock)->with('success', 'Fechadura cadastrada com sucesso!');
     }
 }
