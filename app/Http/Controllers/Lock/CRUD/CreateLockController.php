@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Lock\CRUD;
 
-use AlertMessage;
+
 use App\Models\Lock;
+use App\Traits\AlertMessage;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 
 class CreateLockController extends Controller
 {
-
     use AlertMessage;
 
     public function __invoke(Request $request): RedirectResponse

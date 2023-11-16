@@ -54,6 +54,11 @@ class User extends Authenticatable
                 : $this->name;
     }
 
+    public function getIsAdminAttribute(): bool
+    {
+        return $this->role_id === 1;
+    }
+
     public function locks(): HasMany
     {
         return $this->hasMany(Lock::class);

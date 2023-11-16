@@ -6,14 +6,20 @@ use App\Http\Controllers\Any\DashboardController;
 use App\Http\Controllers\Auth\RegisterUserController;
 use App\Http\Controllers\Auth\RegisterScreenController;
 use App\Http\Controllers\Lock\Views\IndexLockController;
+use App\Http\Controllers\User\Views\IndexUserController;
 use App\Http\Controllers\Auth\AuthenticateUserController;
 use App\Http\Controllers\Lock\Views\CreateLockController;
 use App\Http\Controllers\Lock\Views\UpdateLockController;
+use App\Http\Controllers\User\Views\CreateUserController;
+use App\Http\Controllers\User\Views\UpdateUserController;
 use App\Http\Controllers\Auth\AuthenticateScreenController;
-use App\Http\Controllers\Lock\CRUD\CreateLockController as CreateFunctionLockController;
-use App\Http\Controllers\Lock\CRUD\UpdateLockController as UpdateFunctionLockController;
-use App\Http\Controllers\Lock\CRUD\DeleteLockController as DeleteFunctionLockController;
 use App\Http\Controllers\Lock\CRUD\LinkUserInLockController;
+use App\Http\Controllers\Lock\CRUD\CreateLockController as CreateFunctionLockController;
+use App\Http\Controllers\Lock\CRUD\DeleteLockController as DeleteFunctionLockController;
+use App\Http\Controllers\Lock\CRUD\UpdateLockController as UpdateFunctionLockController;
+use App\Http\Controllers\User\CRUD\CreateUserController as CreateFunctionUserController;
+use App\Http\Controllers\User\CRUD\UpdateUserController as UpdateFunctionUserController;
+use App\Http\Controllers\User\CRUD\DeleteUserController as DeleteFunctionUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,13 +48,27 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::post('/logout', LogoutController::class)->name('logout');
 
-    Route::prefix('fechaduras')->group(function () {
-        Route::get('/', IndexLockController::class)->name('locks.index');
-        Route::get('/cadastrar', CreateLockController::class)->name('locks.create');
-        Route::post('/store', CreateFunctionLockController::class)->name('locks.store');
-        Route::get('/editar/{lock}', UpdateLockController::class)->name('locks.edit');
-        Route::put('/editar/{lock}', UpdateFunctionLockController::class)->name('locks.update');
-        Route::delete('/deletar/{lock}', DeleteFunctionLockController::class)->name('locks.destroy');
-        Route::patch('/vincular/{lock}', LinkUserInLockController::class)->name('locks.link');
+
+    Route::middleware('admin')->group(function () {
+        Route::prefix('fechaduras')->group(function () {
+            Route::get('/', IndexLockController::class)->name('locks.index');
+            Route::get('/cadastrar', CreateLockController::class)->name('locks.create');
+            Route::post('/store', CreateFunctionLockController::class)->name('locks.store');
+            Route::get('/editar/{lock}', UpdateLockController::class)->name('locks.edit');
+            Route::put('/editar/{lock}', UpdateFunctionLockController::class)->name('locks.update');
+            Route::delete('/deletar/{lock}', DeleteFunctionLockController::class)->name('locks.destroy');
+            Route::patch('/vincular/{lock}', LinkUserInLockController::class)->name('locks.link');
+        });
+
+        Route::prefix('usuarios')->group(function () {
+            Route::get('/', IndexUserController::class)->name('users.index');
+            Route::get('/cadastrar', CreateUserController::class)->name('users.create');
+            Route::post('/store', CreateFunctionUserController::class)->name('users.store');
+            Route::get('/editar/{user}', UpdateUserController::class)->name('users.edit');
+            Route::put('/editar/{user}', UpdateFunctionUserController::class)->name('users.update');
+            Route::delete('/deletar/{user}', DeleteFunctionUserController::class)->name('users.destroy');
+        });
     });
+
+
 });

@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Lock\CRUD;
 
-use AlertMessage;
 use App\Models\Lock;
-use Illuminate\Http\Request;
+use App\Traits\AlertMessage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 
