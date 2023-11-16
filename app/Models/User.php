@@ -59,6 +59,16 @@ class User extends Authenticatable
         return $this->role_id === 1;
     }
 
+    public function storeNew(): self
+    {
+        return $this;
+    }
+
+    public function removeUser(): void
+    {
+        return ;
+    }
+
     public function locks(): HasMany
     {
         return $this->hasMany(Lock::class);
