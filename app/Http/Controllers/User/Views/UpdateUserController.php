@@ -14,6 +14,8 @@ class UpdateUserController extends Controller
     {
         $roles = Role::all();
 
+        $user = User::with('role', 'address')->findOrFail($user->id);
+
         return view('user.edit', compact(
             'user',
             'roles'

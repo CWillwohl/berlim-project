@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Address;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,12 @@ class AddressSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Address::create([
+            'user_id' => 1,
+            'country' => 'Brasil',
+            'city' => 'Caraguatatuba',
+            'neighborhood' => 'Balneário Copacabana',
+            'postal_code' => '11676-430',
+        ]);
     }
 }

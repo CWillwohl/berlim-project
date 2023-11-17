@@ -35,6 +35,14 @@
                 </li>
 
                 <li>
+                    <a href="{{ route('users.index') }}"
+                        class="block rounded py-2 pl-3 pr-4 bg-transparent md:p-0 @if(request()->routeIs('users.*')) text-blue-500 @else text-white @endif"
+                        aria-current="page">
+                        Usuários
+                    </a>
+                </li>
+
+                <li>
                     <button
                     id="dropdownNavbarLink"
                     data-dropdown-toggle="dropdownNavbar"
