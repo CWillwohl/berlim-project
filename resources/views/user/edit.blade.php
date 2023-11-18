@@ -12,85 +12,50 @@
 
                             <div class="w-full flex flex-col md:flex-row gap-4">
                                 <div class="w-full md:w-1/2 flex-col">
-                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        id="name"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        value="{{ old('name') ?? $user->name }}"
-                                        required
-                                    >
-                                    @error('name')
-                                        <span class="text-red-500 text-xs">{{ $message }}</span>
-                                    @enderror
+                                    <x-utils.input name="name" labelText="Insira seu Nome:" placeholder="Nome:" value="{{ old('name') ?? $user->name }}" required error />
                                 </div>
 
                                 <div class="w-full md:w-1/2 flex-col">
-                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-mail:</label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        value="{{ old('email') ?? $user->email }}"
-                                        required
-                                    >
-                                    @error('email')
-                                        <span class="text-red-500 text-xs">{{ $message }}</span>
-                                    @enderror
+                                    <x-utils.input name="email" type="email" labelText="E-mail:" placeholder="email@email.com" value="{{ old('email') ?? $user->email }}" required error />
                                 </div>
                             </div>
 
                             <div class="w-full">
-                                <label for="role_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nível de Acesso:</label>
-                                <select id="role_id" name="role_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected disabled>Selecione o Nível de Acesso...</option>
+                                <x-utils.select name="role_id" labelText="Nível de Acesso:" baseOption="Selecione o Nível de Acesso..." required error>
                                     @foreach ($roles as $item)
                                         <option value="{{ $item->id }}" @if ($user->role_id == $item->id) selected @endif>{{ $item->name }}</option>
                                     @endforeach
-                                </select>
-                                @error('role_id')
-                                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                                @enderror
+                                </x-utils.select>
                             </div>
+
                         </div>
 
                         <div class="w-full md:w-1/2 flex flex-col gap-4">
-                            <h1 class="w-full text-lg font-semibold">Dados de Cadastro:</h1>
+                            <h1 class="w-full text-lg font-semibold">Dados de Endereço:</h1>
 
                             <div class="w-full">
-                                <label for="postal_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CEP:</label>
-                                <input
-                                    type="text"
-                                    name="postal_Code"
-                                    id="postal_Code"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    value="{{ old('postal_code') ?? $user->address->postal_code }}"
-                                    required
-                                >
-                                @error('postal_code')
-                                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                                @enderror
+                                <x-utils.input name="postal_code" labelText="CEP:" placeholder="CEP do Usuário:" value="{{ old('postal_code') ?? $user->address->postal_code }}" required error />
                             </div>
 
                             <div class="w-full flex flex-col md:flex-row gap-4">
                                 <div class="w-full md:w-1/2 flex-col">
-                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        id="name"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        value="{{ old('name') ?? $user->name }}"
-                                        disabled
-                                    >
-                                    @error('name')
-                                        <span class="text-red-500 text-xs">{{ $message }}</span>
-                                    @enderror
+                                    <x-utils.input name="city" labelText="Cidade:" placeholder="Cidade do Usuário:" value="{{ old('city') ?? $user->address->city }}" required error />
+                                </div>
+                                <div class="w-full md:w-1/2 flex-col">
+                                    <x-utils.input name="neighborhood" labelText="Bairro:" placeholder="Bairro do Usuário:" value="{{ old('neighborhood') ?? $user->address->neighborhood }}" required error />
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <hr class="border-white/40">
+
+                    <div class="w-full flex items-center justify-end">
+                        <button
+                        type="submit"
+                        class="w-1/5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items-center">
+                            Atualizar dados
+                        </button>
                     </div>
                 </form>
             </x-utils.card>

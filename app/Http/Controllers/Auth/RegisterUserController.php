@@ -9,6 +9,11 @@ use Illuminate\Http\RedirectResponse;
 
 class RegisterUserController extends Controller
 {
+
+    public function __construct(
+        protected User $user
+    ) {}
+
     public function __invoke(Request $request): RedirectResponse
     {
         $data = $request->validate([
@@ -18,7 +23,7 @@ class RegisterUserController extends Controller
             'password_confirmation' => ['required', 'string', 'same:password'],
         ]);
 
-        $user = User::create($data);
+        $user = $this->user->registerUser($data);
 
         auth()->login($user);
 

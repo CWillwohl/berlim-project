@@ -15,7 +15,6 @@ class AddressSeeder extends Seeder
     {
         Address::create([
             'user_id' => 1,
-            'country' => 'Brasil',
             'city' => 'Caraguatatuba',
             'neighborhood' => 'Balneário Copacabana',
             'postal_code' => '11676-430',

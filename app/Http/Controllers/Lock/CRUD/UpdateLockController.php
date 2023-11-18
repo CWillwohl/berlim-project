@@ -15,14 +15,12 @@ class UpdateLockController extends Controller
 
     public function __invoke(Lock $lock, Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:100'],
+        $data = $request->validate([
             'hash' => ['required', 'string'],
             'location_id' => ['required', 'integer'],
-            'status' => ['required', 'boolean'],
         ]);
 
-        $lock->update($request->validated());
+        $lock->update($data);
 
         $this->successMessage('Fechadura atualizada com sucesso!');
 
