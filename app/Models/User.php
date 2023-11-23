@@ -35,6 +35,11 @@ class User extends Authenticatable
     public function getFormattedNameAttribute(): string
     {
         $name = explode(' ', $this->name);
+
+        if (count($name) < 2) {
+            return $this->name;
+        }
+
         return $name[0] != null && $name[1] != null
                 ? $name[0] . ' ' . $name[1]
                 : $this->name;
@@ -47,12 +52,16 @@ class User extends Authenticatable
 
     public function registerUser(array $data): self
     {
-        return $this->create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => $data['password'],
+        $user = $this->create([
+            'name' => $data['user']['name'],
+            'email' => $data['user']['email'],
+            'password' => $data['user']['password'],
             'role_id' => 2,
         ]);
+
+        $user->address()->create($data['address']);
+
+        return $user;
     }
 
     public function storeNew(): self

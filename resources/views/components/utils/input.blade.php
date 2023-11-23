@@ -17,6 +17,14 @@
     value="{{ $value }}"
     {{ $attributes }}
 >
+
+@if(str_contains($name, '[') && str_contains($name, ']'))
+    @php
+        $name = explode('[', $name);
+        $name = $name[0] . '.' . str_replace(']', '', $name[1]);
+    @endphp
+@endif
+
 @if($error)
     @error($name)
         <span class="text-red-500 text-xs">{{ $message }}</span>

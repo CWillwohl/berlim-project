@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\RegisterUserRequest;
 use Illuminate\Http\RedirectResponse;
 
 class RegisterUserController extends Controller
@@ -14,14 +15,9 @@ class RegisterUserController extends Controller
         protected User $user
     ) {}
 
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(RegisterUserRequest $request): RedirectResponse
     {
-        $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'],
-            'password_confirmation' => ['required', 'string', 'same:password'],
-        ]);
+        $data = $request->validated();
 
         $user = $this->user->registerUser($data);
 
