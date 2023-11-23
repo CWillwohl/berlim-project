@@ -60,6 +60,13 @@ class User extends Authenticatable
         return $this;
     }
 
+    public function updateUser(array $data): void
+    {
+        $this->update($data['user']);
+
+        $this->address()->update($data['address']);
+    }
+
     public function removeUser(): void
     {
         return ;

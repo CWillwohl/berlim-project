@@ -12,16 +12,16 @@
 
                             <div class="w-full flex flex-col md:flex-row gap-4">
                                 <div class="w-full md:w-1/2 flex-col">
-                                    <x-utils.input name="name" labelText="Insira seu Nome:" placeholder="Nome:" value="{{ old('name') ?? $user->name }}" required error />
+                                    <x-utils.input name="user[name]" labelText="Insira seu Nome:" placeholder="Nome:" value="{{ old('name') ?? $user->name }}" required error />
                                 </div>
 
                                 <div class="w-full md:w-1/2 flex-col">
-                                    <x-utils.input name="email" type="email" labelText="E-mail:" placeholder="email@email.com" value="{{ old('email') ?? $user->email }}" required error />
+                                    <x-utils.input name="user[email]" type="email" labelText="E-mail:" placeholder="email@email.com" value="{{ old('email') ?? $user->email }}" required error />
                                 </div>
                             </div>
 
                             <div class="w-full">
-                                <x-utils.select name="role_id" labelText="Nível de Acesso:" baseOption="Selecione o Nível de Acesso..." required error>
+                                <x-utils.select name="user[role_id]" labelText="Nível de Acesso:" baseOption="Selecione o Nível de Acesso..." required error>
                                     @foreach ($roles as $item)
                                         <option value="{{ $item->id }}" @if ($user->role_id == $item->id) selected @endif>{{ $item->name }}</option>
                                     @endforeach
@@ -34,15 +34,15 @@
                             <h1 class="w-full text-lg font-semibold">Dados de Endereço:</h1>
 
                             <div class="w-full">
-                                <x-utils.input name="postal_code" labelText="CEP:" placeholder="CEP do Usuário:" value="{{ old('postal_code') ?? $user->address->postal_code }}" required error />
+                                <x-utils.input name="address[postal_code]" labelText="CEP:" placeholder="CEP do Usuário:" value="{{ old('postal_code') ?? $user->address->postal_code }}" required error />
                             </div>
 
                             <div class="w-full flex flex-col md:flex-row gap-4">
                                 <div class="w-full md:w-1/2 flex-col">
-                                    <x-utils.input name="city" labelText="Cidade:" placeholder="Cidade do Usuário:" value="{{ old('city') ?? $user->address->city }}" required error />
+                                    <x-utils.input name="address[city]" labelText="Cidade:" placeholder="Cidade do Usuário:" value="{{ old('city') ?? $user->address->city }}" required error />
                                 </div>
                                 <div class="w-full md:w-1/2 flex-col">
-                                    <x-utils.input name="neighborhood" labelText="Bairro:" placeholder="Bairro do Usuário:" value="{{ old('neighborhood') ?? $user->address->neighborhood }}" required error />
+                                    <x-utils.input name="address[neighborhood]" labelText="Bairro:" placeholder="Bairro do Usuário:" value="{{ old('neighborhood') ?? $user->address->neighborhood }}" required error />
                                 </div>
                             </div>
                         </div>

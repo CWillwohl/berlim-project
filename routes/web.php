@@ -10,14 +10,12 @@ use App\Http\Controllers\User\Views\IndexUserController;
 use App\Http\Controllers\Auth\AuthenticateUserController;
 use App\Http\Controllers\Lock\Views\CreateLockController;
 use App\Http\Controllers\Lock\Views\UpdateLockController;
-use App\Http\Controllers\User\Views\CreateUserController;
 use App\Http\Controllers\User\Views\UpdateUserController;
 use App\Http\Controllers\Auth\AuthenticateScreenController;
 use App\Http\Controllers\Lock\CRUD\LinkUserInLockController;
 use App\Http\Controllers\Lock\CRUD\CreateLockController as CreateFunctionLockController;
 use App\Http\Controllers\Lock\CRUD\DeleteLockController as DeleteFunctionLockController;
 use App\Http\Controllers\Lock\CRUD\UpdateLockController as UpdateFunctionLockController;
-use App\Http\Controllers\User\CRUD\CreateUserController as CreateFunctionUserController;
 use App\Http\Controllers\User\CRUD\UpdateUserController as UpdateFunctionUserController;
 use App\Http\Controllers\User\CRUD\DeleteUserController as DeleteFunctionUserController;
 
@@ -62,10 +60,8 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('usuarios')->group(function () {
             Route::get('/', IndexUserController::class)->name('users.index');
-            Route::get('/cadastrar', CreateUserController::class)->name('users.create');
-            Route::post('/store', CreateFunctionUserController::class)->name('users.store');
             Route::get('/editar/{user}', UpdateUserController::class)->name('users.edit');
-            Route::put('/editar/{user}', UpdateFunctionUserController::class)->name('users.update');
+            Route::put('/editar/{user_id}', UpdateFunctionUserController::class)->name('users.update');
             Route::delete('/deletar/{user}', DeleteFunctionUserController::class)->name('users.destroy');
         });
     });

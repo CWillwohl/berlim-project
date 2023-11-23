@@ -13,8 +13,14 @@ class UpdateUserController extends Controller
 {
     use AlertMessage;
 
-    public function __invoke(UpdateUserRequest $updateUserRequest, User $user): RedirectResponse
+    public function __construct(
+        protected User $user
+    ) {}
+
+    public function __invoke(UpdateUserRequest $updateUserRequest, int $userId): RedirectResponse
     {
+        $user = $this->user->find($userId);
+
         $data = $updateUserRequest->validated();
 
         $user->updateUser($data);
