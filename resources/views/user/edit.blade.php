@@ -34,15 +34,15 @@
                             <h1 class="w-full text-lg font-semibold">Dados de Endereço:</h1>
 
                             <div class="w-full">
-                                <x-utils.input name="address[postal_code]" labelText="CEP:" placeholder="CEP do Usuário:" value="{{ old('postal_code') ?? $user->address->postal_code }}" required error />
+                                <x-utils.input name="address[postal_code]" id="postal_code" labelText="CEP:" placeholder="CEP do Usuário:" value="{{ old('postal_code') ?? $user->address->postal_code }}" onblur="searchViaCEP()" x-data x-mask="99999-999" required error />
                             </div>
 
                             <div class="w-full flex flex-col md:flex-row gap-4">
                                 <div class="w-full md:w-1/2 flex-col">
-                                    <x-utils.input name="address[city]" labelText="Cidade:" placeholder="Cidade do Usuário:" value="{{ old('city') ?? $user->address->city }}" required error />
+                                    <x-utils.input name="address[city]" id="city" labelText="Cidade:" placeholder="Cidade do Usuário:" value="{{ old('city') ?? $user->address->city }}" readonly required error />
                                 </div>
                                 <div class="w-full md:w-1/2 flex-col">
-                                    <x-utils.input name="address[neighborhood]" labelText="Bairro:" placeholder="Bairro do Usuário:" value="{{ old('neighborhood') ?? $user->address->neighborhood }}" required error />
+                                    <x-utils.input name="address[neighborhood]" id="neighborhood" labelText="Bairro:" placeholder="Bairro do Usuário:" value="{{ old('neighborhood') ?? $user->address->neighborhood }}" readonly required error />
                                 </div>
                             </div>
                         </div>

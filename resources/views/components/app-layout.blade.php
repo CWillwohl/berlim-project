@@ -12,6 +12,7 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
     />
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>{{ $title ?? config('app.name') }}</title>
 </head>
@@ -21,9 +22,29 @@
             {{ $slot }}
         </main>
     <x-footer />
-    @vite('resources/js/app.js')
-    </script>
 
+    @vite('resources/js/app.js')
     @stack('scripts')
+    <script>
+        function searchViaCEP() {
+            let cep = document.getElementById('postal_code').value.replace(/\D/g, '');
+
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.erro) {
+                    document.getElementById('city').value = 'CEP Invalido';
+                    document.getElementById('city').disabled = true;
+                    document.getElementById('neighborhood').value = 'CEP Invalido';
+                    document.getElementById('neighborhood').disabled = true;
+                } else {
+                    document.getElementById('city').value = data.localidade;
+                    document.getElementById('city').disabled = false;
+                    document.getElementById('neighborhood').value = data.bairro;
+                    document.getElementById('neighborhood').disabled = false;
+                }
+            })
+        }
+    </script>
 </body>
 </html>

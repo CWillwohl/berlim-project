@@ -32,15 +32,15 @@
                 </h2>
 
                 <div>
-                    <x-utils.input name="address[postal_code]" labelText="Insira seu CEP:" placeholder="XXXXX-XXX" value="{{ old('address.postal_code') }}" required error />
+                    <x-utils.input name="address[postal_code]" id="postal_code" labelText="Insira seu CEP:" placeholder="XXXXX-XXX" value="{{ old('address.postal_code') }}" onblur="searchViaCEP()" x-data x-mask="99999-999" required error />
                 </div>
 
                 <div>
-                    <x-utils.input name="address[city]" labelText="Insira sua cidade:" placeholder="Sua cidade" value="{{ old('address.city') }}" required error />
+                    <x-utils.input name="address[city]" id="city" labelText="Insira sua cidade:" placeholder="Sua cidade" value="{{ old('address.city') }}" readonly required error />
                 </div>
 
                 <div>
-                    <x-utils.input name="address[neighborhood]" labelText="Insira seu bairro:" placeholder="Seu Bairro" value="{{ old('address.neighborhood') }}" required error />
+                    <x-utils.input name="address[neighborhood]" id="neighborhood" labelText="Insira seu bairro:" placeholder="Seu Bairro" value="{{ old('address.neighborhood') }}" readonly required error />
                 </div>
 
                 <div class="h-full flex items-end justify-end">
