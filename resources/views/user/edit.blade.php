@@ -1,5 +1,4 @@
 <x-app-layout>
-    {{-- User data edit --}}
     <div class="w-full items-start justify-center">
         <div class="w-full flex flex-col xl:flex-row gap-4">
             <x-utils.card title="Editar - Usuário" size="w-full">

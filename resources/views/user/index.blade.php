@@ -1,9 +1,9 @@
 <x-app-layout>
-    <x-utils.card title="Tabela - Fechaduras" size="w-2/3">
+    <x-utils.card title="Tabela - Usuários" size="w-2/3">
         <div class="relative overflow-x-auto sm:rounded-lg">
             <div class="p-2 flex justify-between items-center">
                 <div class="max-w-1/2">
-                    <label for="table-search" class="sr-only">Buscar por Fechadura</label>
+                    <label for="table-search" class="sr-only">Buscar por Usuário</label>
                     <div class="relative mt-1">
                         <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
