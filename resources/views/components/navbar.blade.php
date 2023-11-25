@@ -25,23 +25,23 @@
                         Home
                     </a>
                 </li>
+                @can('admin')
+                    <li>
+                        <a href="{{ route('locks.index') }}"
+                            class="block rounded py-2 pl-3 pr-4 bg-transparent md:p-0 @if(request()->routeIs('locks.*')) text-blue-500 @else text-white @endif"
+                            aria-current="page">
+                            Fechadura
+                        </a>
+                    </li>
 
-                <li>
-                    <a href="{{ route('locks.index') }}"
-                        class="block rounded py-2 pl-3 pr-4 bg-transparent md:p-0 @if(request()->routeIs('locks.*')) text-blue-500 @else text-white @endif"
-                        aria-current="page">
-                        Fechadura
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ route('users.index') }}"
-                        class="block rounded py-2 pl-3 pr-4 bg-transparent md:p-0 @if(request()->routeIs('users.*')) text-blue-500 @else text-white @endif"
-                        aria-current="page">
-                        Usuários
-                    </a>
-                </li>
-
+                    <li>
+                        <a href="{{ route('users.index') }}"
+                            class="block rounded py-2 pl-3 pr-4 bg-transparent md:p-0 @if(request()->routeIs('users.*')) text-blue-500 @else text-white @endif"
+                            aria-current="page">
+                            Usuários
+                        </a>
+                    </li>
+                @endcan
                 <li>
                     <button
                     id="dropdownNavbarLink"

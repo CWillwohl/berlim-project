@@ -22,4 +22,11 @@ class Lock extends Model
         $this->user_id = null;
         $this->save();
     }
+
+    public function changeStatus(): void
+    {
+        $this->status = !$this->status;
+
+        $this->save();
+    }
 }

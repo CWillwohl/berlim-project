@@ -13,11 +13,12 @@ use App\Http\Controllers\Lock\Views\UpdateLockController;
 use App\Http\Controllers\User\Views\UpdateUserController;
 use App\Http\Controllers\Auth\AuthenticateScreenController;
 use App\Http\Controllers\Lock\CRUD\LinkUserInLockController;
+use App\Http\Controllers\Lock\CRUD\UpdateStatusLockController;
 use App\Http\Controllers\Lock\CRUD\CreateLockController as CreateFunctionLockController;
 use App\Http\Controllers\Lock\CRUD\DeleteLockController as DeleteFunctionLockController;
 use App\Http\Controllers\Lock\CRUD\UpdateLockController as UpdateFunctionLockController;
-use App\Http\Controllers\User\CRUD\UpdateUserController as UpdateFunctionUserController;
 use App\Http\Controllers\User\CRUD\DeleteUserController as DeleteFunctionUserController;
+use App\Http\Controllers\User\CRUD\UpdateUserController as UpdateFunctionUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,9 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::post('/logout', LogoutController::class)->name('logout');
 
-
-    Route::middleware('admin')->group(function () {
-        Route::prefix('fechaduras')->group(function () {
+    Route::prefix('fechaduras')->group(function () {
+        Route::middleware('admin')->group(function () {
             Route::get('/', IndexLockController::class)->name('locks.index');
             Route::get('/cadastrar', CreateLockController::class)->name('locks.create');
             Route::post('/store', CreateFunctionLockController::class)->name('locks.store');
@@ -57,7 +57,10 @@ Route::middleware('auth')->group(function () {
             Route::delete('/deletar/{lock}', DeleteFunctionLockController::class)->name('locks.destroy');
             Route::patch('/vincular/{lock}', LinkUserInLockController::class)->name('locks.link');
         });
+        Route::patch('/atualizar-status/{lock}', UpdateStatusLockController::class)->name('locks.update-status');
+    });
 
+    Route::middleware('admin')->group(function () {
         Route::prefix('usuarios')->group(function () {
             Route::get('/', IndexUserController::class)->name('users.index');
             Route::get('/editar/{user}', UpdateUserController::class)->name('users.edit');
@@ -65,6 +68,6 @@ Route::middleware('auth')->group(function () {
             Route::delete('/deletar/{user}', DeleteFunctionUserController::class)->name('users.destroy');
         });
     });
-
-
 });
+
+
