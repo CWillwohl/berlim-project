@@ -9,10 +9,10 @@ class DashboardController extends Controller
 {
     public function __invoke(): View
     {
-        $locks = auth()->user()->locks;
+        $user = auth()->user();
 
         return view('dashboard', compact(
-            'locks'
+            'user'
         ));
     }
 }

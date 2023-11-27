@@ -1,3 +1,5 @@
 <x-app-layout>
-    <x-locks.lock-control :locks="$locks" />
+    @if($user->lock)
+        <livewire:lock-control />
+    @endif
 </x-app-layout>

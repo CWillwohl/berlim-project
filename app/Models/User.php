@@ -81,9 +81,9 @@ class User extends Authenticatable
         return ;
     }
 
-    public function locks(): HasMany
+    public function lock(): HasOne
     {
-        return $this->hasMany(Lock::class);
+        return $this->hasOne(Lock::class);
     }
 
     public function role(): BelongsTo

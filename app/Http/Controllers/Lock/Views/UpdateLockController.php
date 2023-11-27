@@ -14,7 +14,7 @@ class UpdateLockController extends Controller
     {
         $locations = collect([1, 2, 3]);
 
-        $users = User::doesntHave('locks')->get();
+        $users = User::doesntHave('lock')->get();
 
         return view('lock.edit', compact('lock', 'locations', 'users'));
     }

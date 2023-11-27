@@ -41,7 +41,7 @@
                                 {{ $item->is_admin ? 'Administrador' : 'Usuario Comum' }}
                             </td>
                             <td class="px-6 py-4">
-                                Vinculado à: <strong>{{ $item->locks->count() }} fechadura(s).</strong>
+                                Vinculado à uma fechadura: <strong>{{ $item->lock ? 'Sim' : 'Não' }}.</strong>
                             </td>
                             <td class="flex px-6 py-4 gap-2">
                                 <a href="{{ route('users.edit', $item) }}" type="button" class="text-white focus:ring ring-white focus:outline-none bg-black/30 shadow-lg duration-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2">

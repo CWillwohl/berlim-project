@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('hash');
             $table->integer('location_id');
             $table->foreignId('user_id')->nullable()->constrained('users');
-            $table->boolean('status');
+            $table->boolean('status')->default(0);
+            $table->timestamp('status_changed_at')->nullable();
             $table->timestamps();
         });
     }
