@@ -56,6 +56,15 @@ Route::middleware('auth')->group(function () {
             Route::put('/editar/{lock}', UpdateFunctionLockController::class)->name('locks.update');
             Route::delete('/deletar/{lock}', DeleteFunctionLockController::class)->name('locks.destroy');
             Route::patch('/vincular/{lock}', LinkUserInLockController::class)->name('locks.link');
+
+            Route::prefix('localizacoes')->group(function () {
+                Route::get('/', IndexLockController::class)->name('locks.index');
+                Route::get('/cadastrar', CreateLockController::class)->name('locks.create');
+                Route::post('/store', CreateFunctionLockController::class)->name('locks.store');
+                Route::get('/editar/{location}', UpdateLockController::class)->name('locks.edit');
+                Route::put('/editar/{location}', UpdateFunctionLockController::class)->name('locks.update');
+                Route::delete('/deletar/{location}', DeleteFunctionLockController::class)->name('locks.destroy');
+            });
         });
         Route::patch('/atualizar-status/{lock}', UpdateStatusLockController::class)->name('locks.update-status');
     });
