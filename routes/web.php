@@ -15,11 +15,17 @@ use App\Http\Controllers\Auth\AuthenticateScreenController;
 use App\Http\Controllers\Lock\CRUD\LinkUserInLockController;
 use App\Http\Controllers\Lock\CRUD\UpdateStatusLockController;
 use App\Http\Controllers\Lock\CRUD\ReceiveLockStatusController;
+use App\Http\Controllers\Location\Views\IndexLocationController;
+use App\Http\Controllers\Location\Views\CreateLocationController;
+use App\Http\Controllers\Location\Views\UpdateLocationController;
 use App\Http\Controllers\Lock\CRUD\CreateLockController as CreateFunctionLockController;
 use App\Http\Controllers\Lock\CRUD\DeleteLockController as DeleteFunctionLockController;
 use App\Http\Controllers\Lock\CRUD\UpdateLockController as UpdateFunctionLockController;
 use App\Http\Controllers\User\CRUD\DeleteUserController as DeleteFunctionUserController;
 use App\Http\Controllers\User\CRUD\UpdateUserController as UpdateFunctionUserController;
+use App\Http\Controllers\Location\CRUD\CreateLocationController as CreateFunctionLocationController;
+use App\Http\Controllers\Location\CRUD\DeleteLocationController as DeleteFunctionLocationController;
+use App\Http\Controllers\Location\CRUD\UpdateLocationController as UpdateFunctionLocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,14 +64,14 @@ Route::middleware('auth')->group(function () {
             Route::delete('/deletar/{lock}', DeleteFunctionLockController::class)->name('locks.destroy');
             Route::patch('/vincular/{lock}', LinkUserInLockController::class)->name('locks.link');
 
-            // Route::prefix('localizacoes')->group(function () {
-            //     Route::get('/', IndexLockController::class)->name('locks.index');
-            //     Route::get('/cadastrar', CreateLockController::class)->name('locks.create');
-            //     Route::post('/store', CreateFunctionLockController::class)->name('locks.store');
-            //     Route::get('/editar/{location}', UpdateLockController::class)->name('locks.edit');
-            //     Route::put('/editar/{location}', UpdateFunctionLockController::class)->name('locks.update');
-            //     Route::delete('/deletar/{location}', DeleteFunctionLockController::class)->name('locks.destroy');
-            // });
+            Route::prefix('localizacoes')->group(function () {
+                Route::get('/', IndexLocationController::class)->name('locations.index');
+                Route::get('/cadastrar', CreateLocationController::class)->name('locations.create');
+                Route::post('/store', CreateFunctionLocationController::class)->name('locations.store');
+                // Route::get('/editar/{location}', UpdateLocationController::class)->name('locations.edit');
+                // Route::put('/editar/{location}', UpdateFunctionLocationController::class)->name('locations.update');
+                // Route::delete('/deletar/{location}', DeleteFunctionLocationController::class)->name('locations.destroy');
+            });
         });
 
         Route::patch('/atualizar-status/{lock}', UpdateStatusLockController::class)->name('locks.update-status');
