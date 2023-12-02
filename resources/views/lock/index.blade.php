@@ -50,7 +50,7 @@
                                 {{ $item->user->formatted_name ?? 'Não vinculado.' }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $item->location_id }}
+                                {{ $item->location->complete_address ?? 'Não vinculado.' }}
                             </td>
                             <td class="flex px-6 py-4 gap-2">
                                 <a href="{{ route('locks.edit', $item) }}" type="button" class="text-white focus:ring ring-white focus:outline-none bg-black/30 shadow-lg duration-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2">

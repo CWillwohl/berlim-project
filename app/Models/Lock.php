@@ -33,11 +33,28 @@ class Lock extends Model
     {
         $this->status = !$this->status;
 
+        $this->status_changed_at = now();
+
         $this->save();
+    }
+
+    public function getLastStatusChangedAtAttribute(): string
+    {
+        return date('d/m/Y H:i', strtotime($this->status_changed_at)) . ' - ' .  $this->status_string;
+    }
+
+    public function getStatusStringAttribute(): string
+    {
+        return $this->status ? 'Aberto' : 'Fechado';
     }
 
     public static function getUserLocks(): Collection
     {
         return self::where('user_id', auth()->user()->id)->orderBy('updated_at')->get();
+    }
+
+    public function getLocksWithLocation(): Collection
+    {
+        return $this->with('location')->get();
     }
 }

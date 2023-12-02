@@ -21,10 +21,10 @@
 
                 <div class="w-full flex flex-col gap-4">
                     <div>
-                        <x-utils.input type="text" labelText="Localização:" value="Rua Oswaldo Cruz, 164, Centro" disabled required />
+                        <x-utils.input type="text" labelText="Localização:" value="{{ $lock->location->complete_address }}" disabled required />
                     </div>
                     <div>
-                        <x-utils.input type="text" labelText="Última atualização:" value="03/04/2022 12:00 - Fechada" disabled required />
+                        <x-utils.input type="text" labelText="Última atualização:" value="{{ $lock->last_status_changed_at }}" disabled required />
                     </div>
                 </div>
             </div>

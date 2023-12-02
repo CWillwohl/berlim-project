@@ -35,13 +35,13 @@
                     @forelse ($locations as $item)
                         <tr class="text-xs bg-gradient-to-b from-blue-500/70 to-blue-500/50 text-white uppercase">
                             <th class="px-6 py-4">
-                                #
+                                {{ $item->locks->count() > 0 ? 'Vinculado a ' . $item->locks->count() . ' fechadura(s)' : 'Nenhuma fechadura vinculada.' }}
                             </th>
                             <th class="px-6 py-4">
-                                #
+                                {{ $item->city }}
                             </th>
                             <th class="px-6 py-4">
-                                #
+                                {{ $item->complete_address }}
                             </th>
                             <td class="flex px-6 py-4 gap-2">
                                 <a href="#" type="button" class="text-white focus:ring ring-white focus:outline-none bg-black/30 shadow-lg duration-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2">
