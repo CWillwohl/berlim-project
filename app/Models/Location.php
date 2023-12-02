@@ -10,4 +10,10 @@ class Location extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function locks(): HasMany
+    {
+        return $this->hasMany(Lock::class);
+    }
 }
+

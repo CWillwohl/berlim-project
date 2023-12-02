@@ -18,6 +18,11 @@ class Lock extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class);
+    }
+
     public function removeUser(): void
     {
         $this->user_id = null;

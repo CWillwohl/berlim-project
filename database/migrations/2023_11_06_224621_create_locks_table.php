@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('locks', function (Blueprint $table) {
             $table->id();
             $table->string('hash');
-            $table->integer('location_id');
             $table->foreignId('user_id')->nullable()->constrained('users');
             $table->boolean('status')->default(0);
             $table->timestamp('status_changed_at')->nullable();
