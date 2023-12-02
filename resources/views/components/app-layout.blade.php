@@ -33,15 +33,24 @@
             .then(response => response.json())
             .then(data => {
                 if (data.erro) {
+                    // state and street
+                    document.getElementById('state').value = 'CEP Invalido';
+                    document.getElementById('state').disabled = true;
                     document.getElementById('city').value = 'CEP Invalido';
                     document.getElementById('city').disabled = true;
                     document.getElementById('neighborhood').value = 'CEP Invalido';
                     document.getElementById('neighborhood').disabled = true;
+                    document.getElementById('street').value = 'CEP Invalido';
+                    document.getElementById('street').disabled = true;
                 } else {
+                    document.getElementById('state').value = data.uf;
+                    document.getElementById('state').disabled = false;
                     document.getElementById('city').value = data.localidade;
                     document.getElementById('city').disabled = false;
                     document.getElementById('neighborhood').value = data.bairro;
                     document.getElementById('neighborhood').disabled = false;
+                    document.getElementById('street').value = data.logradouro;
+                    document.getElementById('street').disabled = false;
                 }
             })
         }
